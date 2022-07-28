@@ -2,7 +2,7 @@
 #How do you authentiate yourself
 #....API KEY............
 import requests
-api_key = "7d741f1ff96bdb5264e759aad9fbb9b8"
+api_key = ""
 api_url = "https://api.openweathermap.org/data/2.5/onecall"
 parameters = {
     "lat":37.964252,
