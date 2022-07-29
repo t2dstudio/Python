@@ -2,8 +2,14 @@
 #How do you authentiate yourself
 #....API KEY............
 import requests
-api_key = ""
+import os
+from twilio.rest import Client
+api_key = os.environ.get("OWM_API")
 api_url = "https://api.openweathermap.org/data/2.5/onecall"
+account_sid = os.environ.get("TWILO_ACCT_SID")
+auth_token = os.environ.get("TWILO_AUTH_TOKEN")
+
+
 parameters = {
     "lat":37.964252,
     "lon": -91.831833,
@@ -23,4 +29,11 @@ for hour_data in range(len(hourly_data)-35): # Use SLICE instaed for hour_data i
         will_rain = True
 
 if will_rain:
-    print("Bring Umbrella")
+    client = Client(account_sid, auth_token)
+    message = client.messages.create(
+        body="It's going to rain today, Remember to bring an Umbrella ☂️",
+        from_='+12059463647',
+        to='+18166026168'
+    )
+
+    print(message.status)
